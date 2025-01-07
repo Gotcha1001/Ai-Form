@@ -220,19 +220,26 @@ function FormUi({ jsonForm, onFieldUpdate, deleteField, selectedTheme, selectedB
                     </div>
                 </FeatureMotionWrapperMap>
             ))}
+
             {!enabledSignIn ? (
                 isSignedIn ? (
                     isClient ? (
-                        <button type="submit" className="btn btn-primary w-full">
-                            Submit
-                        </button>
+                        !editable ? (
+                            <button type="submit" className="btn btn-primary w-full">
+                                Submit
+                            </button>
+                        ) : null
                     ) : null
                 ) : (
-                    <Button>
-                        <SignInButton mode="modal">Sign In Before Submitting</SignInButton>
-                    </Button>
+                    <SignInButton mode="modal">
+                        Sign In Before Submitting
+                    </SignInButton>
                 )
             ) : null}
+
+
+
+
         </form>
     )
 }

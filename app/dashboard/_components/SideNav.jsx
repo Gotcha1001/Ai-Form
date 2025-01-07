@@ -24,12 +24,7 @@ const SideNav = () => {
             icon: MessageSquare,
             path: '/dashboard/responses'
         },
-        {
-            id: 3,
-            name: 'Analytics',
-            icon: LineChart,
-            path: '/dashboard/analytics'
-        },
+
         {
             id: 4,
             name: 'Upgrade',
@@ -96,11 +91,14 @@ const SideNav = () => {
 
             {/* Mobile Bottom Navigation */}
             <div className="fixed bottom-0 left-0 right-0 bg-white border-t lg:hidden">
-                <div className="grid grid-cols-4 gap-1 p-2">
+                <div className="flex justify-between items-center p-2 px-10">
                     {menuList.map((menu) => (
                         <Link key={menu.id} href={menu.path}>
-                            <div className={`flex flex-col items-center p-2 ${path === menu.path ? 'text-blue-600' : 'text-gray-600'}`}>
-                                <menu.icon className="w-5 h-5" />
+                            <div
+                                className={`flex flex-col items-center p-2 ${path === menu.path ? 'text-blue-600' : 'text-gray-600'
+                                    }`}
+                            >
+                                <menu.icon className="w-6 h-6" />
                                 <span className="text-xs mt-1">{menu.name}</span>
                             </div>
                         </Link>
