@@ -1,15 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
+import Header from "./_components/Header";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "next-themes";
+import { shadesOfPurple } from "@clerk/themes";
+import Footer from "./_components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -18,12 +13,36 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        baseTheme: shadesOfPurple,
+        variables: {
+          colorPrimary: "#3b82f6",
+          colorBackground: "#000",
+          colorInputBackground: "#2D3748",
+          colorInputText: "#F3F4F6",
+        },
+        elements: {
+          formButtonPrimary: "bg-indigo-800 hover:bg-indigo-900 text-white",
+          card: "gradient-background2",
+          headerTitle: "text-indigo-800",
+          headerSubtitle: "text-purple-700",
+        },
+      }}
+    >
+      <html lang="en" suppressHydrationWarning>
+        <body className="">
+          {/* <ThemeProvider attribute="class" defaultTheme="light"> */}
+          <Header />
+          <Toaster richColors />
+          <main className="min-h-screen">{children}</main>
+          <Toaster richColors />
+
+          <Footer />
+
+          {/* </ThemeProvider> */}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
