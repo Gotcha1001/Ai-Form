@@ -39,6 +39,7 @@ const SideNav = () => {
     const [formList, setFormList] = useState([]);
     const [PercFileCreated, setPercFileCreated] = useState(0);
 
+
     useEffect(() => {
         user && GetFormList();
     }, [user])
@@ -74,7 +75,9 @@ const SideNav = () => {
                         ))}
                     </div>
 
-                    <Button className="w-full">+ Create Form</Button>
+                    {/* <Button className="w-full" onClick={() => setOpenDialog(true)}>
+                        + Create Form
+                    </Button> */}
 
                     <div className="space-y-4">
                         <Progress value={PercFileCreated} className="w-full" />
